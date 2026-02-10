@@ -597,6 +597,10 @@
       phone: "+9647835795996",
       email: "hr@company-domain.com",
 
+      
+  apiUrl: "https://script.google.com/macros/s/AKfycbzhMy9WF_OdvNJhRM4652QubISKxvDkEM0hGbb1Qic5l04qMUwP-n5HPUdWewP1VEtxmQ/exec",
+
+
       // رابط Google Form للتقديم
       applyFormUrl: "https://forms.gle/KBQCpEtxjpbCoiEm6"
     };
@@ -735,6 +739,26 @@
     ========================= */
     document.addEventListener("DOMContentLoaded", () => {
       renderAnnouncements();
+
+      async function loadAnnouncementsFromApi(){
+  const res = await fetch(CONFIG.apiUrl);
+  const data = await res.json();
+
+  // المتوقع: data.announcements = [ {title,date,tag,body,linkText,linkUrl}, ... ]
+  // إذا كان السكربت يرجّع Array مباشرة عدل السطر التالي:
+  const arr = data.announcements || data;
+
+  // خزّنها داخل المتغير العالمي ANNOUNCEMENTS ثم اعرض
+  ANNOUNCEMENTS.length = 0;
+  arr.forEach(x => ANNOUNCEMENTS.push(x));
+
+  renderAnnouncements();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadAnnouncementsFromApi().catch(() => renderAnnouncements());
+});
+
     });
   </script>
 
