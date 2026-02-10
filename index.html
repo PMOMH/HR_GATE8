@@ -412,53 +412,27 @@ select {
 
     /* --- Jobs --- */
     .jobs-tools{
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      flex-wrap:wrap;
-      margin-bottom: 18px;
-    }
-    .input{
-      flex:1;
-      min-width: 240px;
-      padding: 14px 14px;
-      border-radius: 10px;
-      border: 2px solid #e1e1e1;
-      outline:none;
-      font-family: inherit;
-      font-weight: 800;
-      transition: var(--transition);
-      background: var(--white);
-    }
-    .input:focus{
-      border-color: var(--secondary-color);
-      box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.10);
-    }
-    .jobs-list{ display:grid; gap:18px; }
-    .job-card{ padding: 20px 22px; }
-    .job-title{
-      font-size: 1.25rem;
-      font-weight: 900;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-      line-height:1.35;
-    }
-    .job-meta{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-bottom: 10px;
-    }
-    .job-desc{
-      color: var(--text-light);
-      font-weight: 600;
-      font-size: 1.0rem;
-      margin-top: 6px;
-    }
-    .job-actions{
-      margin-top: 14px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+<section id="apply" style="background-color: var(--white);">
+  <div class="container">
+    <div class="card">
+      <div class="card-head">
+        <h3>تقديم السيرة الذاتية</h3>
+        <span class="badge">Google Form</span>
+      </div>
+
+      <div class="card-body" style="text-align:right;">
+        <p style="color: var(--text-light); font-weight:600; font-size:1.05rem; margin-bottom:14px;">
+          يمكنك إرسال سيرتك الذاتية مباشرة إلى قسم الموارد البشرية عبر النموذج التالي.
+        </p>
+
+        <a class="btn btn-primary btn-sm" href="PUT_YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" rel="noopener">
+          تقديم الآن
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     /* --- Footer (لوحة معلومات بسيطة) --- */
     footer {
