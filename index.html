@@ -730,27 +730,23 @@
     /* =========================
       Init (IMPORTANT)
     ========================= */
-    document.addEventListener("DOMContentLoaded", () => {
-      renderAnnouncements();
-
-      async function loadAnnouncementsFromApi(){
-  const res = await fetch(CONFIG.apiUrl);
-  const data = await res.json();
-
-  // المتوقع: data.announcements = [ {title,date,tag,body,linkText,linkUrl}, ... ]
-  // إذا كان السكربت يرجّع Array مباشرة عدل السطر التالي:
-  const arr = data.announcements || data;
-
-  // خزّنها داخل المتغير العالمي ANNOUNCEMENTS ثم اعرض
-  ANNOUNCEMENTS.length = 0;
-  arr.forEach(x => ANNOUNCEMENTS.push(x));
-
-  renderAnnouncements();
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  loadAnnouncementsFromApi().catch(() => renderAnnouncements());
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await fetch(CONFIG.apiUrl);
+    const data = await res.json();
+    ANNOUNCEMENTS = data.announcements || data;
+    renderAnnouncements();
+  } catch (e) {
+    console.error("API Error:", e);
+    annList.innerHTML = `
+      <div class="card">
+        <div class="card-body">
+          <div class="ann-title">حدث خطأ في تحميل الإعلانات</div>
+        </div>
+      </div>`;
+  }
 });
+
 
     });
   </script>
